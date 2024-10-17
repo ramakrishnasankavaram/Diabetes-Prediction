@@ -1,0 +1,95 @@
+<html>
+    <head>
+        <title>Diabetes Prediction</title>
+        <style>
+            /* Apply a background image or a gradient */
+            body {
+                font-family: 'Arial', sans-serif;
+                background: linear-gradient(to right, #f7f7f7, #e3e3e3);
+                margin: 0;
+                padding: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                background-image: url('background.jpg'); /* Optional */
+                background-size: cover;
+            }
+
+            /* Center the content in a beautiful card */
+            .container {
+                background: white;
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                max-width: 400px;
+                text-align: center;
+                width: 100%;
+            }
+
+            h1 {
+                font-size: 28px;
+                margin-bottom: 20px;
+                color: #333;
+                text-transform: uppercase;
+            }
+
+            /* Styling input fields */
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                margin: 10px 0;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                box-sizing: border-box;
+            }
+
+            /* Style the button */
+            button {
+                width: 100%;
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                cursor: pointer;
+                margin-top: 20px;
+            }
+
+            button:hover {
+                background-color: #4060a0;
+            }
+
+            /* Style for the result text */
+            h2 {
+                color: #555;
+                margin-top: 20px;
+                font-size: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Diabetes Prediction</h1>
+
+            <!-- Main Input for Receiving Query to our Model -->
+            <form action="{{ url_for('predict') }}" method="post">
+                <input type="text" name="Pregnancies" placeholder="Enter Pregnancies" required="required" /><br>
+                <input type="text" name="Glucose" placeholder="Enter Glucose Level" required="required" /><br>
+                <input type="text" name="BloodPressure" placeholder="Enter Blood Pressure" required="required" /><br>
+                <input type="text" name="SkinThickness" placeholder="Enter Skin Thickness" required="required" /><br>
+                <input type="text" name="Insulin" placeholder="Enter Insulin Level" required="required" /><br>
+                <input type="text" name="BMI" placeholder="Enter BMI" required="required" /><br>
+                <input type="text" name="DiabetesPedigreeFunction" placeholder="Enter Pedigree Function" required="required" /><br>
+                <input type="text" name="Age" placeholder="Enter Age" required="required" /><br>
+                <button type="submit">Predict</button>
+            </form>
+
+            <!-- Display the prediction result only if results exist -->
+            {% if results %}
+                <h2>{{ results }}</h2>
+            {% endif %}
+        </div>
+    </body>
+</html>
